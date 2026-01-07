@@ -27,8 +27,10 @@ public class ScriptManager {
             concatinatedOutput += line;
         }
         if(concatinatedOutput.contains(screenName)){
+            System.out.println("Server online");
             return ServerManager.serverStatus.ONLINE;
         }else{
+            System.out.println("Server offline");
             return ServerManager.serverStatus.OFFLINE;
         }
     }
