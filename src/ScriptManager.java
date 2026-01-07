@@ -15,8 +15,12 @@ public class ScriptManager {
         
     }
 
+       public void stop(){
+        
+    }
+
     public static ServerManager.serverStatus status() throws IOException, InterruptedException{
-        String[] arguments = {"bash","screen","-list"};
+        String[] arguments = {"bash","-c","screen -list"};
         ArrayList<String> output = scriptRunner(arguments);
         String concatinatedOutput = "";
         for(String line : output){
@@ -28,11 +32,6 @@ public class ScriptManager {
             return ServerManager.serverStatus.OFFLINE;
         }
     }
-
-    public void stop(){
-        
-    }
-
 
 
     private static ArrayList<String> scriptRunner(String[] arguments)throws IOException, InterruptedException{
