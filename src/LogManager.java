@@ -64,7 +64,7 @@ public class LogManager {
     private static String createFileName(String logTitle,LogType  logtype, Boolean success){
         LocalDate currentDate = LocalDate.now();
         // Format DATE__logtype__success/failure__Title:(logTitle)
-        return currentDate.toString() +"__"+ logtype.toString() +"__"+ sucessOrFailure(success) +"__Title:("+ logTitle +").txt";
+        return currentDate.toString() +"__"+ logtype.toString() +"__"+ sucessOrFailure(success) +"__Title:"+ logTitle +".txt";
     }
 
     

@@ -25,7 +25,6 @@ public final class FilePaths {
             return true;
         } else {
             //If the directory does not exist then log it.
-            System.out.println("Directory does not exist : " + pathToCheck);
             LogManager.createLog(pathToCheck+" : Does not exist","From checkDirectorieExists function in FilePaths class."+pathToCheck+" does not exist",LogManager.LogType.SETUP,false);
             return false;
         }
@@ -38,7 +37,7 @@ public final class FilePaths {
         }catch(FileAlreadyExistsException e){
             LogManager.createLog(pathToCheck+" : Already exists","From createDirectory function in FilePaths class."+pathToCheck+" attempted to create but already exists",LogManager.LogType.SETUP,false);
         }
-        
+
         LogManager.createLog(pathToCheck+" Created","From createDirectory function in FilePaths class."+pathToCheck+" created",LogManager.LogType.SETUP,true);
         return true;
     }
