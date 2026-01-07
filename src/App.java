@@ -8,6 +8,9 @@ public class App {
         
         LogManager.createLog("seems legit","Seems legit test log",LogManager.LogType.SERVERSTARTED,true);
         
+        System.out.println("Running script");
+        ScriptManager.status();
+
         System.out.println("Sucess, exiting");
     }
 
@@ -18,3 +21,5 @@ public class App {
         System.out.println("Setup finished ...");
     }
 }
+
+
