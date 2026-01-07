@@ -6,8 +6,8 @@ import java.nio.file.Path;
 public final class FilePaths {
     public static final String activeWorldsPath = "/media/bigDrive/MCAutomation/activeWorlds";
     public static final String backupsPath = "/media/bigDrive/MCAutomation/backups";
-    public static final String javaProgramPath = "/media/bigDrive/MCAutomation/javaProgram";
     public static final String logsPath = "/media/bigDrive/MCAutomation/logs";
+    public static final String scriptsPath = "/media/bigDrive/MCAutomation/scripts";
 
     public static boolean ensureDirectoryExists(String pathToCheck)throws IOException{
         //Check if the directory exists

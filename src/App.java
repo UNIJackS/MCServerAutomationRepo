@@ -14,6 +14,7 @@ public class App {
     private static void setup() throws Exception{
         System.out.println("Setup begginging ...");
         LogManager.ensureLoggingDirectorysExist();
+        //ScriptManager.ensureScriptDirectoryExists();
         System.out.println("Setup finished ...");
     }
 }
