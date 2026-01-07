@@ -10,7 +10,8 @@ public class LogManager {
         SERVERSTOPPED,
         BACKUP,
         SETUP,
-        LOGGING;
+        LOGGING,
+        STATUS;
 
         public Path getPath(){return Path.of(FilePaths.logsPath+"/"+this.name());}
         public String getPathString(){return FilePaths.logsPath + "/" + this.name();}

@@ -7,29 +7,29 @@ import java.util.ArrayList;
 public class ScriptManager {
     public final static String screenName = "MCServer";
 
-    public void say(String whatToSay) throws IOException, InterruptedException{
+    public static void say(String whatToSay) throws IOException, InterruptedException{
         String[] arguments = {"bash","-c","screen -S "+screenName+" -X stuff say"+whatToSay+"\n"};
         scriptRunner(arguments);
     }
 
-    public void start(String pathToMCServer) throws IOException, InterruptedException{
+    public static void start() throws IOException, InterruptedException{
         String[] arguments = {"bash","-c","screen -dmS"+screenName+FilePaths.pathToMCServer};
         scriptRunner(arguments);
     }
 
-    public void stop() throws IOException, InterruptedException{
+    public static void stop() throws IOException, InterruptedException{
         String[] arguments = {"bash","-c","screen -S "+screenName+" -X stuff stop\n"};
         scriptRunner(arguments);
     }
 
-    public static ServerManager.serverStatus status() throws IOException, InterruptedException{
+    public static ServerStatusManager.serverStatusEnum status() throws IOException, InterruptedException{
         String[] arguments = {"bash","-c","screen -list"};
         ArrayList<String> output = scriptRunner(arguments);
 
         if(String.join(", ", output).contains(screenName)){
-            return ServerManager.serverStatus.ONLINE;
+            return ServerStatusManager.serverStatusEnum.ONLINE;
         }else{
-            return ServerManager.serverStatus.OFFLINE;
+            return ServerStatusManager.serverStatusEnum.OFFLINE;
         }
     }
 
