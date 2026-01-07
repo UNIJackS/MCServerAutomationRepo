@@ -16,7 +16,7 @@ public class ScriptManager {
     }
 
     public static ServerManager.serverStatus status() throws IOException, InterruptedException{
-        String[] arguments = {"bash", "-c", "./" + FilePaths.scriptsPath + "STATUS.sh"};
+        String[] arguments = {"bash", "-c", "./" + FilePaths.scriptsPath + "/STATUS.sh"};
         ArrayList<String> output = scriptRunner(arguments);
         String concatinatedOutput = "";
         for(String line : output){
