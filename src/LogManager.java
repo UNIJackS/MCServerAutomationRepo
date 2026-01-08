@@ -11,6 +11,7 @@ public class LogManager {
         STARTSERVER,
         STOPSERVER,
         BACKUP,
+        BACKUPTIME,
         SETUP,
         LOGGING,
         STATUS;

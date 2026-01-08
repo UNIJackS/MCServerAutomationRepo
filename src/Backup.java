@@ -59,6 +59,7 @@ public record Backup(StatusManager statusManager) implements ServerAction {
     }
 
     public static Duration timeSinceLastBackup() throws IOException {
+
         //Get all the backups
         ArrayList<String> backupNames = listDirectoryNames(Path.of(FilePaths.backupWorldPath));
 
@@ -71,6 +72,7 @@ public record Backup(StatusManager statusManager) implements ServerAction {
 
         assert topLocalDateTime != null;
         Duration duration = Duration.between(topLocalDateTime, LocalDateTime.now());
+        LogManager.createLog("Time since last backup in hours_" + duration.toHours(), "", LogManager.LogType.BACKUPTIME, true);
         return duration;
     }
 
