@@ -1,43 +1,63 @@
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-public class Backup extends Action{
-    public Backup(StatusManager serverStatusManager) {
-        super(serverStatusManager);
+public record Backup(StatusManager statusManager) implements ServerAction {
+    @Override
+    public LogManager.LogType logType() {
+        return LogManager.LogType.BACKUP;
     }
 
     @Override
-    protected boolean attemptRun() throws InterruptedException, IOException {
-        //Check that server is online
-        if(serverStatusManager.getStatus().online()){
-            LogManager.createLog("Not Backing up Server", "Not Backingup server as Server is not online so can not start from attemptRun method in Backup class", LogManager.LogType.SERVERSTARTED, true);
-            return true;
-        }
-        //Stop the server
-        if(!new Stop(serverStatusManager).run()){
-            LogManager.createLog("Not Backing up Server", "Not Backingup server as Server will not stop so can not start from attemptRun method in Backup class", LogManager.LogType.SERVERSTARTED, false);
+    public Status.statusEnum initialStatus() {
+        return Status.statusEnum.OFFLINE;
+    }
+
+    @Override
+    public Status.statusEnum transitionStatus() {
+        return Status.statusEnum.BACKINGUP;
+    }
+
+    @Override
+    public Status.statusEnum finalStatus() {
+        return Status.statusEnum.OFFLINE;
+    }
+
+    @Override
+    public void actualAction() throws IOException, InterruptedException {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        ScriptManager.backup(currentDateTime.toString());
+    }
+
+    @Override
+    public boolean checkActionWorked() throws InterruptedException, IOException {
+        //Check if backup file exists
+        return false;
+    }
+
+    @Override
+    public boolean run() throws IOException, InterruptedException {
+
+        if (!new Stop(statusManager).run()) {
+            LogManager.createLog("Could not stop Server", "", LogManager.LogType.BACKUP, false);
             return false;
         }
-        //Move it to backingup status
-        if(!startCheck()){
-            //Should be offline but if not then not sure whats going on so reccover
+
+        if(!attemptRun()){
+            //Attempt failed enter recovery
+            recover();
+            //Attempt to run backup again
+            return attemptRun();
+        }
+
+        if (!new Start(statusManager).run()) {
+            LogManager.createLog("Could not start Server", "", LogManager.LogType.BACKUP, false);
             return false;
         }
-        LocalDate currentDate = LocalDate.now();
-        ScriptManager.backup("/"+currentDate.toString());
 
-
-        new Start(serverStatusManager).run();
+        ScriptManager.say("Backup Successful");
         return true;
     }
 
-    @Override
-    protected boolean startCheck() throws InterruptedException, IOException {
-        return serverStatusManager.changeStatus(Status.statusEnum.OFFLINE,Status.statusEnum.BACKINGUP);
-    }
 
-    @Override
-    protected boolean finishCheck() throws InterruptedException, IOException {
-        return false;
-    }
 }

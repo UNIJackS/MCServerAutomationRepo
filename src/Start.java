@@ -1,44 +1,44 @@
 import java.io.IOException;
 
-public class Start extends Action{
-
-    public Start(StatusManager serverStatusManager) {
-        super(serverStatusManager);
+public record Start(StatusManager statusManager) implements ServerAction {
+    @Override
+    public LogManager.LogType logType() {
+        return LogManager.LogType.STARTSERVER;
     }
 
     @Override
-    protected boolean attemptRun() throws InterruptedException, IOException {
-        if(!startCheck()){
-            LogManager.createLog("Not Starting Server", "Not starting server as Server is not offline so can not start from attemptStart method in ServerManager class", LogManager.LogType.SERVERSTARTED, true);
-            return true;
-        }
+    public Status.statusEnum initialStatus() {
+        return Status.statusEnum.OFFLINE;
+    }
 
-        LogManager.createLog("Starting Server", "Starting server from attemptStart method in ServerManager class", LogManager.LogType.SERVERSTARTED, true);
+    @Override
+    public Status.statusEnum transitionStatus() {
+        return Status.statusEnum.STARTING;
+    }
+
+    @Override
+    public Status.statusEnum finalStatus() {
+        return Status.statusEnum.ONLINE;
+    }
+
+    @Override
+    public void actualAction() throws IOException, InterruptedException {
+        //Starts server
         ScriptManager.start();
+    }
 
-        for(int timeOut = 10; !finishCheck(); timeOut -=1){
+    @Override
+    public boolean checkActionWorked() throws InterruptedException, IOException {
+        for(int timeOut = 10; !(ScriptManager.status() == Status.statusEnum.ONLINE); timeOut -=1){
             Thread.sleep(5000);
             if(timeOut <= 0){
                 //Server has not come up
                 return false;
             }
         }
+
+        Thread.sleep(5000);
         return true;
-    }
 
-
-    @Override
-    protected boolean startCheck() throws InterruptedException, IOException {
-        return serverStatusManager.changeStatus(Status.statusEnum.OFFLINE,Status.statusEnum.STARTING);
-    }
-
-    @Override
-    protected boolean finishCheck() throws InterruptedException, IOException {
-        //Check server has come up
-        if(ScriptManager.status() == Status.statusEnum.ONLINE){
-            //If it has change the state to online from starting
-            return serverStatusManager.changeStatus(Status.statusEnum.STARTING,Status.statusEnum.ONLINE);
-        }
-        return false;
     }
 }

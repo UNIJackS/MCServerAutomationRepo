@@ -7,6 +7,10 @@ public class ServerManager {
          serverStatusManager = new StatusManager();
     }
 
+    public Status getServerStatus(){
+        return serverStatusManager.getStatusManagerStatus();
+    }
+
     public boolean start() throws IOException, InterruptedException {
         return new Start(serverStatusManager).run();
     }
@@ -19,10 +23,8 @@ public class ServerManager {
         return new Backup(serverStatusManager).run();
     }
 
-
-    public boolean backupServer(){
-        return true;
+    public boolean reccover() throws IOException, InterruptedException {
+        return new Recover(serverStatusManager).run();
     }
-
 
 }

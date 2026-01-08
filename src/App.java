@@ -1,23 +1,32 @@
-import java.util.Scanner;
-
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Server Automation script started");
         System.out.println("Args :" + args);
         setup();
-        
-
-
-        System.out.println("Attempting to start ...");
 
         ServerManager serverManager = new ServerManager();
         serverManager.start();
 
-        Scanner scanner = new Scanner(System.in); // Create a Scanner object
+        while(true){
+            Status currentStatus = serverManager.getServerStatus();
+            switch(currentStatus.get()){
+                case Status.statusEnum.ONLINE:
+                    //Check if backup needed
+                    serverManager.backup();
+                    break;
 
-        System.out.println("Enter to contnue :");
-        String fullName = scanner.nextLine();
-        serverManager.stop();
+                case Status.statusEnum.OFFLINE:
+                    //Start up server
+                    serverManager.start();
+                    break;
+
+                default:
+                    serverManager.reccover();
+                    break;
+            }
+            Thread.sleep(30000);
+        }
+
     }
 
     private static void setup() throws Exception{

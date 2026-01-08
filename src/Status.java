@@ -2,7 +2,7 @@ public class Status {
     public enum statusEnum {
         ONLINE,
         STARTING,
-        SHUTTINGDOWN,
+        STOPPING,
         OFFLINE,
         UNKNOWN,
         BACKINGUP
@@ -30,7 +30,7 @@ public class Status {
 
     public boolean online(){return currentStatus == statusEnum.ONLINE;}
     public boolean starting(){return currentStatus == statusEnum.STARTING;}
-    public boolean shuttingdown(){return currentStatus == statusEnum.SHUTTINGDOWN;}
+    public boolean shuttingdown(){return currentStatus == statusEnum.STOPPING;}
     public boolean offline(){return currentStatus == statusEnum.OFFLINE;}
     public boolean unknown(){return currentStatus == statusEnum.UNKNOWN;}
     public boolean backingup(){return currentStatus == statusEnum.BACKINGUP;}

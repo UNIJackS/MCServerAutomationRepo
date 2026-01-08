@@ -3,11 +3,12 @@ import java.time.LocalDate;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.time.LocalDateTime;
 
 public class LogManager {
     public enum LogType{
-        SERVERSTARTED,
-        SERVERSTOPPED,
+        STARTSERVER,
+        STOPSERVER,
         BACKUP,
         SETUP,
         LOGGING,
@@ -29,7 +30,6 @@ public class LogManager {
         }
         return true;
     }
-
 
 
     /**
@@ -63,9 +63,9 @@ public class LogManager {
     }
 
     private static String createFileName(String logTitle,LogType  logtype, Boolean success){
-        LocalDate currentDate = LocalDate.now();
+        LocalDateTime currentDateTime = LocalDateTime.now();
         // Format DATE__logtype__success/failure__Title:(logTitle)
-        return "["+currentDate.toString() +"]_["+ logtype.toString() +"]_["+ sucessOrFailure(success) +"]_["+ logTitle +"].txt";
+        return "["+currentDateTime.toString() +"]_["+ logtype.toString() +"]_["+ sucessOrFailure(success) +"]_["+ logTitle +"].txt";
     }
 
     
