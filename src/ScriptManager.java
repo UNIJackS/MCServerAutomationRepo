@@ -33,7 +33,7 @@ public class ScriptManager {
 
     public static void closeScreen() throws IOException, InterruptedException{
         //String[] arguments = {"bash","-c","screen -S "+screenName+" -p 0 -X stuff \"stop^M\""};
-        String[] arguments = {"bash","-c","screen -d -r "+screenName+" -X stuff ^C ^C"};
+        String[] arguments = {"bash","-c","screen -X -S "+screenName+" kill"};
         scriptRunner(arguments);
     }
 
