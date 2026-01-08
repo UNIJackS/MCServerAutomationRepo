@@ -6,12 +6,13 @@ public class App {
         System.out.println("Args :" + args);
         setup();
         
-        LogManager.createLog("seems legit","Seems legit test log",LogManager.LogType.SERVERSTARTED,true);
+        //LogManager.createLog("seems legit","Seems legit test log",LogManager.LogType.SERVERSTARTED,true);
 
-        ServerManager serverManager = new ServerManager();
+        //ServerManager serverManager = new ServerManager();
 
         System.out.println("Attempting to start ...");
-        serverManager.start();
+
+        ScriptManager.start();
 
     }
 
