@@ -12,7 +12,14 @@ public class Stop extends Action{
             return true;
         }
         LogManager.createLog("Stopping Server", "Stopping server from attemptStop method in ServerManager class", LogManager.LogType.SERVERSTARTED, true);
+        ScriptManager.say("Server Shutting down in 1 min");
+        Thread.sleep(30000);
+        ScriptManager.say("Server Shutting down in 30 sec");
+        Thread.sleep(30000);
         ScriptManager.stop();
+        //Wait for chunks to save for 15 seconds
+        Thread.sleep(15000);
+        ScriptManager.closeScreen();
 
         for(int timeOut = 10; !finishCheck(); timeOut -=1){
             Thread.sleep(5000);

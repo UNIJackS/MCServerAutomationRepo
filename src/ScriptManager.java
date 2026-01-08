@@ -8,7 +8,7 @@ public class ScriptManager {
     public final static String screenName = "MCServer";
 
     public static void say(String whatToSay) throws IOException, InterruptedException{
-        String[] arguments = {"bash","-c","screen -r "+screenName+" -X stuff say"+whatToSay+"\n"};
+        String[] arguments = {"bash","-c","screen -d -r "+screenName+" -X stuff \"say "+whatToSay+" $(printf '\\r')\""};
         scriptRunner(arguments);
     }
 
@@ -28,6 +28,12 @@ public class ScriptManager {
     public static void stop() throws IOException, InterruptedException{
         //String[] arguments = {"bash","-c","screen -S "+screenName+" -p 0 -X stuff \"stop^M\""};
         String[] arguments = {"bash","-c","screen -d -r "+screenName+" -X stuff \"stop $(printf '\\r')\""};
+        scriptRunner(arguments);
+    }
+
+    public static void closeScreen() throws IOException, InterruptedException{
+        //String[] arguments = {"bash","-c","screen -S "+screenName+" -p 0 -X stuff \"stop^M\""};
+        String[] arguments = {"bash","-c","screen -d -r "+screenName+" -X stuff \"exit $(printf '\\r')\""};
         scriptRunner(arguments);
     }
 
