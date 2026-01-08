@@ -26,7 +26,8 @@ public class ScriptManager {
     }
 
     public static void stop() throws IOException, InterruptedException{
-        String[] arguments = {"bash","-c","screen -S "+screenName+" -p 0 -X stuff \"stop^M\""};
+        //String[] arguments = {"bash","-c","screen -S "+screenName+" -p 0 -X stuff \"stop^M\""};
+        String[] arguments = {"bash","-c","screen -R "+screenName+" -X stuff \"save-off $(printf '\\r')\""};
         scriptRunner(arguments);
     }
 
