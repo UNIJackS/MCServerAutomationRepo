@@ -16,7 +16,7 @@ public class App {
         Scanner scanner = new Scanner(System.in); // Create a Scanner object
 
         System.out.println("Enter to contnue :");
-
+        String fullName = scanner.nextLine();
         serverManager.stop();
     }
 
