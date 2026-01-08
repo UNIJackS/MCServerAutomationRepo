@@ -26,7 +26,7 @@ public class ScriptManager {
     }
 
     public static void stop() throws IOException, InterruptedException{
-        String[] arguments = {"bash","-c","screen -S "+screenName+" -X stuff stop\n"};
+        String[] arguments = {"bash","-c","screen -S "+screenName+" -p 0 -X stuff \"stop^M\""};
         scriptRunner(arguments);
     }
 
