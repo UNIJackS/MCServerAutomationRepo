@@ -46,7 +46,7 @@ public class ScriptManager {
         // Use ProcessBuilder to execute the script
         ProcessBuilder processBuilder = new ProcessBuilder();
 
-        //System.out.println("arguments for script :"+ Arrays.toString(arguments));
+        System.out.println("arguments for script :"+ Arrays.toString(arguments));
         // Command to run the script using bash
         processBuilder.command(arguments);
         
