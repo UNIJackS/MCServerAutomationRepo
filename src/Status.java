@@ -10,7 +10,9 @@ public class Status {
 
     private statusEnum currentStatus;
     //Constructor
-    public Status(){currentStatus = statusEnum.UNKNOWN;}
+    public Status(){
+        set(statusEnum.UNKNOWN);
+    }
 
     public statusEnum get(){return currentStatus;}
 
