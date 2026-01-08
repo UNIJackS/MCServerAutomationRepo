@@ -11,7 +11,8 @@ public class StatusManager {
     //Constructor
     public StatusManager() throws IOException, InterruptedException{
         status = new Status();
-        checkServerStatus();
+        //Sets inital status
+        exitRecovery();
     }
 
     public boolean changeStatus(Status.statusEnum from, Status.statusEnum to) throws IOException, InterruptedException {
