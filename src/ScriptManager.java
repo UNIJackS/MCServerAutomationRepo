@@ -20,7 +20,7 @@ public class ScriptManager {
 
     public static void start() throws IOException, InterruptedException{
         //bash -c screen -dmS
-        String[] arguments = {"bash","-c","screen -dmS"+screenName+" "+FilePaths.runPath};
+        String[] arguments = {"bash","-c","screen -dmS "+screenName+" "+FilePaths.runPath};
         scriptRunner(arguments);
     }
 
