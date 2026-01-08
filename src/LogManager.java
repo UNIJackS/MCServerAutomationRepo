@@ -4,6 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class LogManager {
     public enum LogType{
@@ -64,8 +65,10 @@ public class LogManager {
 
     private static String createFileName(String logTitle,LogType  logtype, Boolean success){
         LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("[yyyy-MM-dd]_[HH-mm-ss]");
+        String formatedCurrentDateTime = currentDateTime.format(customFormatter);
         // Format DATE__logtype__success/failure__Title:(logTitle)
-        return "["+currentDateTime.toString() +"]_["+ logtype.toString() +"]_["+ sucessOrFailure(success) +"]_["+ logTitle +"].txt";
+        return formatedCurrentDateTime +"_["+ logtype.toString() +"]_["+ sucessOrFailure(success) +"]_["+ logTitle +"].txt";
     }
 
     

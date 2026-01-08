@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public record Backup(StatusManager statusManager) implements ServerAction {
     @Override
@@ -26,7 +27,9 @@ public record Backup(StatusManager statusManager) implements ServerAction {
     @Override
     public void actualAction() throws IOException, InterruptedException {
         LocalDateTime currentDateTime = LocalDateTime.now();
-        ScriptManager.backup(currentDateTime.toString());
+        DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("[yyyy-MM-dd]_[HH-mm-ss]");
+        String formatedCurrentDateTime = currentDateTime.format(customFormatter);
+        ScriptManager.backup(formatedCurrentDateTime);
     }
 
     @Override
