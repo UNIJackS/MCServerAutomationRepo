@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -13,6 +13,9 @@ public class App {
         ServerManager serverManager = new ServerManager();
         serverManager.start();
 
+        Scanner scanner = new Scanner(System.in); // Create a Scanner object
+
+        System.out.println("Enter to contnue :");
 
         serverManager.stop();
     }
