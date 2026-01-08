@@ -8,14 +8,17 @@ public class Start extends Action{
 
     @Override
     protected boolean attemptRun() throws InterruptedException, IOException {
+        System.out.println("Status at call:" + serverStatusManager.getStatusString());
         if(startCheck()){
             LogManager.createLog("Not Starting Server", "Not starting server as Server is not offline so can not start from attemptStart method in ServerManager class", LogManager.LogType.SERVERSTARTED, true);
             return true;
         }
+        System.out.println("Status after check :" + serverStatusManager.getStatusString());
         LogManager.createLog("Starting Server", "Starting server from attemptStart method in ServerManager class", LogManager.LogType.SERVERSTARTED, true);
         ScriptManager.start();
 
         for(int timeOut = 10; !finishCheck(); timeOut -=1){
+            System.out.println("Status fail finish check :" + serverStatusManager.getStatusString());
             Thread.sleep(5000);
             if(timeOut <= 0){
                 //Server has not come up
