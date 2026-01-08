@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ScriptManager {
     public final static String screenName = "MCServer";
@@ -45,7 +46,7 @@ public class ScriptManager {
         // Use ProcessBuilder to execute the script
         ProcessBuilder processBuilder = new ProcessBuilder();
 
-        System.out.println("arguments for script :"+arguments);
+        System.out.println("arguments for script :"+ Arrays.toString(arguments));
         // Command to run the script using bash
         processBuilder.command(arguments);
         
