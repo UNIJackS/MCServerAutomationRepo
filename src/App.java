@@ -11,7 +11,7 @@ public class App {
         System.out.println("Attempting to start ...");
 
         ServerManager serverManager = new ServerManager();
-        serverManager.start();
+        //serverManager.start();
         //ScriptManager.start();
 
     }
