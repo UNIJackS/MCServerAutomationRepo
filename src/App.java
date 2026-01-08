@@ -24,8 +24,8 @@ public class App {
                     serverManager.reccover();
                     break;
             }
-            System.out.println("waiting 30 seconds ...");
-            Thread.sleep(30000);
+            System.out.println("waiting 5 mins ...");
+            Thread.sleep(300000);
         }
 
     }

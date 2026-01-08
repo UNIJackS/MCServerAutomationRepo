@@ -58,7 +58,7 @@ public record Backup(StatusManager statusManager) implements ServerAction {
         return result;
     }
 
-    public Duration timeSinceLastBackup() throws IOException {
+    public static Duration timeSinceLastBackup() throws IOException {
         //Get all the backups
         ArrayList<String> backupNames = listDirectoryNames(Path.of(FilePaths.backupWorldPath));
 
