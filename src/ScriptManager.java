@@ -20,7 +20,7 @@ public class ScriptManager {
     }
 
     public static void start() throws IOException, InterruptedException{
-        //bash -c screen -dmS
+        //bash -c screen -dmS serverTest /media/bigDrive/MCAutomation/activeWorld/run.sh
         String[] arguments = {"bash","-c","screen -dmS "+screenName+" "+FilePaths.runPath};
         scriptRunner(arguments);
     }
@@ -46,7 +46,7 @@ public class ScriptManager {
         // Use ProcessBuilder to execute the script
         ProcessBuilder processBuilder = new ProcessBuilder();
 
-        System.out.println("arguments for script :"+ Arrays.toString(arguments));
+        //System.out.println("arguments for script :"+ Arrays.toString(arguments));
         // Command to run the script using bash
         processBuilder.command(arguments);
         
@@ -66,11 +66,6 @@ public class ScriptManager {
 
         // Wait for the script to finish
         int exitCode = process.waitFor();
-        System.out.println("\nScript exited with code: " + exitCode);
         return output;
     }
-
-
-
-    
 }
