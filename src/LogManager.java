@@ -59,7 +59,7 @@ public class LogManager {
 
 
     private static String sucessOrFailure(Boolean success){
-        if(success){return "Sucess";}
+        if(success){return "Success";}
         return "Failure";
     }
 

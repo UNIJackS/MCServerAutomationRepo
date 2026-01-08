@@ -24,13 +24,14 @@ public class App {
                     serverManager.reccover();
                     break;
             }
+            System.out.println("waiting 30 seconds ...");
             Thread.sleep(30000);
         }
 
     }
 
     private static void setup() throws Exception{
-        System.out.println("Setup begginging ...");
+        System.out.println("Setup beginning ...");
         LogManager.ensureLoggingDirectorysExist();
         //ScriptManager.ensureScriptDirectoryExists();
         System.out.println("Setup finished ...");
