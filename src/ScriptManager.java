@@ -44,7 +44,8 @@ public class ScriptManager {
     private static ArrayList<String> scriptRunner(String[] arguments)throws IOException, InterruptedException{
         // Use ProcessBuilder to execute the script
         ProcessBuilder processBuilder = new ProcessBuilder();
-        
+
+        System.out.println("arguments for script :"+arguments);
         // Command to run the script using bash
         processBuilder.command(arguments);
         
