@@ -13,6 +13,8 @@ public class App {
         ServerManager serverManager = new ServerManager();
         serverManager.start();
 
+
+        serverManager.stop();
     }
 
     private static void setup() throws Exception{
