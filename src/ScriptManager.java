@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class ScriptManager {
@@ -12,8 +11,15 @@ public class ScriptManager {
         scriptRunner(arguments);
     }
 
+    public static void backup(String backupName) throws IOException, InterruptedException {
+        // cp -r source dest
+        // cp -r /media/bigDrive/MCAutomation/activeWorld/world /media/bigDrive/MCAutomation/backups/backupName
+        String[] arguments = {"bash","-c","cp -r "+FilePaths.activeWorldPath+" "+FilePaths.backupWorldPath+backupName};
+        scriptRunner(arguments);
+    }
+
     public static void start() throws IOException, InterruptedException{
-        String[] arguments = {"bash","-c","screen -dmS"+screenName+FilePaths.pathToMCServer};
+        String[] arguments = {"bash","-c","screen -dmS"+screenName+FilePaths.runPath};
         scriptRunner(arguments);
     }
 
@@ -22,14 +28,14 @@ public class ScriptManager {
         scriptRunner(arguments);
     }
 
-    public static ServerStatusManager.serverStatusEnum status() throws IOException, InterruptedException{
+    public static Status.statusEnum status() throws IOException, InterruptedException{
         String[] arguments = {"bash","-c","screen -list"};
         ArrayList<String> output = scriptRunner(arguments);
 
         if(String.join(", ", output).contains(screenName)){
-            return ServerStatusManager.serverStatusEnum.ONLINE;
+            return Status.statusEnum.ONLINE;
         }else{
-            return ServerStatusManager.serverStatusEnum.OFFLINE;
+            return Status.statusEnum.OFFLINE;
         }
     }
 

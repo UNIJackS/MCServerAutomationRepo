@@ -4,11 +4,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public final class FilePaths {
-    public static final String activeWorldsPath = "/media/bigDrive/MCAutomation/activeWorlds";
-    public static final String backupsPath = "/media/bigDrive/MCAutomation/backups";
     public static final String logsPath = "/media/bigDrive/MCAutomation/logs";
-    public static final String scriptsPath = "/media/bigDrive/MCAutomation/MCServerAutomationRepo/scripts";
-    public static final String pathToMCServer = "/media/bigDrive/MCAutomation/activeWorld/run.sh";
+    public static final String runPath = "/media/bigDrive/MCAutomation/activeWorld/run.sh";
+    public static final String activeWorldPath = "/media/bigDrive/MCAutomation/activeWorld/world";
+    public static final String backupWorldPath = "/media/bigDrive/MCAutomation/backups/";
 
     public static boolean ensureDirectoryExists(String pathToCheck)throws IOException{
         //Check if the directory exists

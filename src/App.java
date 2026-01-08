@@ -7,13 +7,12 @@ public class App {
         setup();
         
         LogManager.createLog("seems legit","Seems legit test log",LogManager.LogType.SERVERSTARTED,true);
-        
-        
 
+        ServerManager serverManager = new ServerManager();
 
-        System.out.println("Running script");
-        ScriptManager.status();
-        System.out.println("Sucess, exiting");
+        System.out.println("Attempting to start ...");
+        serverManager.start();
+
     }
 
     private static void setup() throws Exception{

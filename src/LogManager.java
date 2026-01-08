@@ -35,9 +35,9 @@ public class LogManager {
     /**
      * Creates a log file
      *
-     * @param logContent is the title for the log.
+     * @param logTitle is the title for the log.
      * @param logContent is the text for the log.
-     * @param logType is the type of log to be created.
+     * @param logtype is the type of log to be created.
      * @param success is if the action was a sucess or failure.
      *
      * @return a boolean of if the log was created sucessfully.
