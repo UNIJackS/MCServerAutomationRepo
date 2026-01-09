@@ -68,7 +68,7 @@ public record Backup(StatusManager statusManager) implements ServerAction {
         for(String name : backupNames){
             backupLocalDateTime.add(LocalDateTime.parse(name, customFormatter));
         }
-        LocalDateTime topLocalDateTime = backupLocalDateTime.pollFirst();
+        LocalDateTime topLocalDateTime = backupLocalDateTime.pollLast();
 
         assert topLocalDateTime != null;
         Duration duration = Duration.between(topLocalDateTime, LocalDateTime.now());
