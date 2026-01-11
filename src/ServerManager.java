@@ -20,12 +20,7 @@ public class ServerManager {
     }
 
     public boolean backup() throws IOException, InterruptedException {
-        //If it has been more than a day since the last backup
-        //Then run another backup
-        if(Backup.timeSinceLastBackup().toHours() >24){
-            return new Backup(serverStatusManager).run();
-        }
-        return true;
+        return new Backup(serverStatusManager).run();
     }
 
     public boolean reccover() throws IOException, InterruptedException {
